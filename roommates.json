@@ -1,0 +1,16 @@
+{
+ "roommates": [
+  {
+   "id": "7b746f",
+   "nombre": "Carlos Cano",
+   "debe": 5,
+   "recibe": 9
+  },
+  {
+   "id": "7a8233",
+   "nombre": "Mia Schmitt",
+   "debe": 4.5,
+   "recibe": 5
+  }
+ ]
+}

@@ -1,0 +1,16 @@
+{
+ "gastos": [
+  {
+   "roommate": "Carlos Cano",
+   "descripcion": "Articulos de limpieza",
+   "monto": 9,
+   "id": "6eca2c"
+  },
+  {
+   "id": "6f9df6",
+   "roommate": "Mia Schmitt",
+   "descripcion": "Articulos de limpieza",
+   "monto": 10
+  }
+ ]
+}
