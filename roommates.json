@@ -1,16 +1,25 @@
 {
  "roommates": [
   {
-   "id": "7b746f",
-   "nombre": "Carlos Cano",
-   "debe": 5,
-   "recibe": 9
+   "id": "8916e4",
+   "nombre": "Nanna Christiansen",
+   "debe": 666.66,
+   "recibe": 0,
+   "correo": "nanna.christiansen@example.com"
   },
   {
-   "id": "7a8233",
-   "nombre": "Mia Schmitt",
-   "debe": 4.5,
-   "recibe": 5
+   "id": "abe0d1",
+   "nombre": "Ismael Castro",
+   "debe": 0,
+   "recibe": 333.33,
+   "correo": "ismael.castro@example.com"
+  },
+  {
+   "id": "349760",
+   "nombre": "Alejandra Araújo",
+   "debe": 0,
+   "recibe": 333.33,
+   "correo": "alejandra.araujo@example.com"
   }
  ]
 }

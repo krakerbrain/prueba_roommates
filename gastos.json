@@ -1,16 +1,22 @@
 {
  "gastos": [
   {
-   "roommate": "Carlos Cano",
+   "roommate": "Nanna Christiansen",
    "descripcion": "Articulos de limpieza",
-   "monto": 9,
-   "id": "6eca2c"
+   "monto": 0,
+   "id": "4ead01"
   },
   {
-   "id": "6f9df6",
-   "roommate": "Mia Schmitt",
+   "id": "37ebf5",
+   "roommate": "Ismael Castro",
    "descripcion": "Articulos de limpieza",
-   "monto": 10
+   "monto": 1000
+  },
+  {
+   "id": "afb929",
+   "roommate": "Alejandra Araújo",
+   "descripcion": "Articulos de limpieza",
+   "monto": 1000
   }
  ]
 }

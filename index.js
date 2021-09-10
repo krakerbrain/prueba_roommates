@@ -1,8 +1,11 @@
 const http = require("http");
+// 1. Ocupar el módulo File System para la manipulación de archivos alojados en el
+// servidor (3 Puntos)
 const fs = require("fs");
 const { v4: uuidv4 } = require("uuid");
 const url = require("url");
-const { nuevoRoommate, guardarUsuario, borrarUsuario } = require("./roomate.js");
+const { nuevoRoommate, guardarUsuario, reset } = require("./roomate.js");
+const { send } = require("./correo");
 
 http
   .createServer((req, res) => {
@@ -27,7 +30,7 @@ http
     if (req.url.startsWith("/deleteUser") && req.method == "DELETE") {
       nuevoRoommate()
         .then(async (usuario) => {
-          borrarUsuario(usuario);
+          reset(usuario);
           res.end(JSON.stringify(usuario, null, 1));
         })
         .catch((e) => {
@@ -36,6 +39,8 @@ http
           console.log("Error borrando usuario", e);
         });
     }
+    // e. GET /roommates: Devuelve todos los roommates almacenados en el servidor
+    // (roommates.json)
 
     if (req.url.startsWith("/roommates") && req.method == "GET") {
       res.setHeader("content-type", "application/json");
@@ -46,12 +51,14 @@ http
     let gastosJSON = JSON.parse(fs.readFileSync("gastos.json", "utf8"));
     let gastos = gastosJSON.gastos;
 
-    // Ruta para disponibilizar los datos desde archivo gastos.json
+    // a. GET /gastos: Devuelve todos los gastos almacenados en el archivo gastos.json.
+
     if (req.url.startsWith("/gastos") && req.method == "GET") {
       res.end(JSON.stringify(gastosJSON, null, 1));
     }
 
-    // Ruta para agregar nuevos registros al archivo gastos.json
+    // b. POST /gasto: Recibe el payload con los datos del gasto y los almacena en un archivo JSON (gastos.json).
+
     if (req.url.startsWith("/gasto") && req.method == "POST") {
       let body;
 
@@ -76,13 +83,33 @@ http
         datosRm.map((e) => {
           if (e.nombre == body.roommate) {
             let recibe = body.monto / conteoRm;
-            e.recibe += recibe;
+            e.recibe += parseFloat(recibe.toFixed(2));
           } else if (e.nombre !== body.roommate) {
             let debe = body.monto / conteoRm;
-            e.debe += debe;
+            e.debe += parseFloat(debe.toFixed(2));
           }
+
           fs.writeFileSync("roommates.json", JSON.stringify(verRm, null, 1));
         });
+
+        let nombre = gastos.map((e) => e.roommate);
+        let descripcion = gastos.map((e) => e.descripcion);
+        let monto = gastos.map((e) => e.monto);
+        let correos = datosRm.map((e) => e.correo);
+
+        // 6. Enviar un correo electrónico a todos los roommates cuando se registre un nuevo
+        // gasto. Se recomienda agregar a la lista de correos su correo personal para verificar
+        // esta funcionalidad. (Opcional)
+
+        // send(nombre, descripcion, monto, correos)
+        //   .then(() => {
+        //     res.end();
+        //   })
+        //   .catch((e) => {
+        //     res.statusCode = 500;
+        //     res.end();
+        //     console.log("Error en el envío de correo", e);
+        //   });
 
         fs.writeFileSync("gastos.json", JSON.stringify(gastosJSON, null, 1));
         res.end();
@@ -90,7 +117,9 @@ http
       });
     }
 
-    // Ruta para actualizar registros del archivo gastos.json
+    // c. PUT /gasto: Recibe el payload de la consulta y modifica los datos
+    // almacenados en el servidor (gastos.json).
+
     if (req.url.startsWith("/gasto") && req.method == "PUT") {
       let body;
 
@@ -106,16 +135,16 @@ http
         let verRm = JSON.parse(fs.readFileSync("roommates.json", "utf8"));
         let datosRm = verRm.roommates;
         let conteoRm = datosRm.length;
+
         datosRm.map((e) => {
           if (e.nombre == body.roommate) {
-            let recibe = body.monto / conteoRm;
-            console.log("recibe " + recibe);
-            e.recibe = recibe;
-            console.log("formula " + (e.recibe += recibe));
+            let recibe;
+            recibe = body.monto / conteoRm;
+            e.recibe = parseFloat(recibe.toFixed(2));
           } else if (e.nombre !== body.roommate) {
-            let debe = body.monto / conteoRm;
-
-            e.debe = debe;
+            let debe;
+            debe = body.monto / conteoRm;
+            e.debe = parseFloat(debe.toFixed(2));
           }
           fs.writeFileSync("roommates.json", JSON.stringify(verRm, null, 1));
         });
@@ -130,13 +159,18 @@ http
         res.end();
       });
     }
-    // Ruta para borrar registros del archivo gastos.json
+    //     d. DELETE /gasto: Recibe el id del gasto usando las Query Strings y la elimine
+    //      del historial de gastos (gastos.json).
+
     if (req.url.startsWith("/gasto") && req.method == "DELETE") {
       const { id } = url.parse(req.url, true).query;
 
-      gastosJSON.gastos = gastos.filter((g) => g.id !== id);
+      let verRm = JSON.parse(fs.readFileSync("roommates.json", "utf8"));
+      let datosRm = verRm.roommates;
+      let conteoRm = datosRm.length;
 
-      fs.writeFileSync("gastos.json", JSON.stringify(gastosJSON, null, 1));
+      gastosJSON.gastos = gastos.filter((g) => g.id !== id);
+      datosRm = fs.writeFileSync("gastos.json", JSON.stringify(gastosJSON, null, 1));
       res.end();
     }
   })
