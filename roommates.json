@@ -1,25 +1,3 @@
 {
- "roommates": [
-  {
-   "id": "8916e4",
-   "nombre": "Nanna Christiansen",
-   "debe": 666.66,
-   "recibe": 0,
-   "correo": "nanna.christiansen@example.com"
-  },
-  {
-   "id": "abe0d1",
-   "nombre": "Ismael Castro",
-   "debe": 0,
-   "recibe": 333.33,
-   "correo": "ismael.castro@example.com"
-  },
-  {
-   "id": "349760",
-   "nombre": "Alejandra Araújo",
-   "debe": 0,
-   "recibe": 333.33,
-   "correo": "alejandra.araujo@example.com"
-  }
- ]
+  "roommates": []
 }

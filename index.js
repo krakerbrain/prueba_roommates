@@ -6,6 +6,7 @@ const { v4: uuidv4 } = require("uuid");
 const url = require("url");
 const { nuevoRoommate, guardarUsuario, reset } = require("./roomate.js");
 const { send } = require("./correo");
+const { agregaGasto, modificaGasto, actualizarGastoRommie } = require("./calculos");
 
 http
   .createServer((req, res) => {
@@ -73,33 +74,18 @@ http
           descripcion: body.descripcion,
           monto: body.monto,
         };
-
         gastos.push(gasto);
 
-        let verRm = JSON.parse(fs.readFileSync("roommates.json", "utf8"));
-        let datosRm = verRm.roommates;
-        let conteoRm = datosRm.length;
-
-        datosRm.map((e) => {
-          if (e.nombre == body.roommate) {
-            let recibe = body.monto / conteoRm;
-            e.recibe += parseFloat(recibe.toFixed(2));
-          } else if (e.nombre !== body.roommate) {
-            let debe = body.monto / conteoRm;
-            e.debe += parseFloat(debe.toFixed(2));
-          }
-
-          fs.writeFileSync("roommates.json", JSON.stringify(verRm, null, 1));
-        });
-
-        let nombre = gastos.map((e) => e.roommate);
-        let descripcion = gastos.map((e) => e.descripcion);
-        let monto = gastos.map((e) => e.monto);
-        let correos = datosRm.map((e) => e.correo);
+        agregaGasto(body);
 
         // 6. Enviar un correo electrónico a todos los roommates cuando se registre un nuevo
         // gasto. Se recomienda agregar a la lista de correos su correo personal para verificar
         // esta funcionalidad. (Opcional)
+
+        // let nombre = gastos.map((e) => e.roommate);
+        // let descripcion = gastos.map((e) => e.descripcion);
+        // let monto = gastos.map((e) => e.monto);
+        // let correos = datosRm.map((e) => e.correo);
 
         // send(nombre, descripcion, monto, correos)
         //   .then(() => {
@@ -113,7 +99,6 @@ http
 
         fs.writeFileSync("gastos.json", JSON.stringify(gastosJSON, null, 1));
         res.end();
-        console.log("Gasto registrado con éxito en el archivo gastos.json");
       });
     }
 
@@ -132,22 +117,7 @@ http
       });
 
       req.on("end", () => {
-        let verRm = JSON.parse(fs.readFileSync("roommates.json", "utf8"));
-        let datosRm = verRm.roommates;
-        let conteoRm = datosRm.length;
-
-        datosRm.map((e) => {
-          if (e.nombre == body.roommate) {
-            let recibe;
-            recibe = body.monto / conteoRm;
-            e.recibe = parseFloat(recibe.toFixed(2));
-          } else if (e.nombre !== body.roommate) {
-            let debe;
-            debe = body.monto / conteoRm;
-            e.debe = parseFloat(debe.toFixed(2));
-          }
-          fs.writeFileSync("roommates.json", JSON.stringify(verRm, null, 1));
-        });
+        modificaGasto(body);
 
         gastosJSON.gastos = gastos.map((g) => {
           if (g.id == body.id) {
@@ -164,13 +134,13 @@ http
 
     if (req.url.startsWith("/gasto") && req.method == "DELETE") {
       const { id } = url.parse(req.url, true).query;
-
       let verRm = JSON.parse(fs.readFileSync("roommates.json", "utf8"));
       let datosRm = verRm.roommates;
       let conteoRm = datosRm.length;
 
       gastosJSON.gastos = gastos.filter((g) => g.id !== id);
-      datosRm = fs.writeFileSync("gastos.json", JSON.stringify(gastosJSON, null, 1));
+
+      fs.writeFileSync("gastos.json", JSON.stringify(gastosJSON, null, 1));
       res.end();
     }
   })
