@@ -1,3 +1,16 @@
 {
-  "gastos": []
+ "gastos": [
+  {
+   "roommate": "Hilal Bastiaans",
+   "descripcion": "Articulos de limpieza",
+   "monto": 500,
+   "id": "b346ca"
+  },
+  {
+   "id": "0eb172",
+   "roommate": "Thomas Wilson",
+   "descripcion": "Articulos de limpieza",
+   "monto": 3000
+  }
+ ]
 }

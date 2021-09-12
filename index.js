@@ -134,12 +134,7 @@ http
 
     if (req.url.startsWith("/gasto") && req.method == "DELETE") {
       const { id } = url.parse(req.url, true).query;
-      let verRm = JSON.parse(fs.readFileSync("roommates.json", "utf8"));
-      let datosRm = verRm.roommates;
-      let conteoRm = datosRm.length;
-
       gastosJSON.gastos = gastos.filter((g) => g.id !== id);
-
       fs.writeFileSync("gastos.json", JSON.stringify(gastosJSON, null, 1));
       res.end();
     }
