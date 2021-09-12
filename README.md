@@ -43,6 +43,4 @@ Y debe verse asi:
 
 ## Autor ✒️
 
-_Menciona a todos aquellos que ayudaron a levantar el proyecto desde sus inicios_
-
 - **Mario Montenegro** - [krakerbrain](https://github.com/krakerbrain)
