@@ -3,23 +3,6 @@
 Crear un servidor con Node que sirva una interfaz HTML cuya temática está basada en el registro
 de gastos entre roommates.
 
-Lo que debe ocurrir es que al presionar el botón agregar roommates, irán apareciendo usuarios en una línea que tendrá:
-
-- Nombre del usuario[usuario random extraido de la API randomuser] DEBE RECIBE
-
-![Ejemplo](/debe_recibe.jpg)
-
-Si se registra un gasto, el mismo debe dividirse entre los usuarios que aparecen en la tabla. Como el usuario que origino el gasto
-no puede deber entonces en la columna "recibe" se genera un valor a su favor(que es la parte que le corresponde del gasto),
-mientras que en la columna "DEBE" de los demás usuarios se genera la parte que deben del gasto.
-
-Cuando se modifica el valor de un gasto, se deben recalcular los "DEBE y RECIBE" de los usuarios afectados por el gasto
-
-Cuando se elimina un gasto, se deben recalcular los "DEBE y RECIBE" de los usuarios afectados por el gasto
-
-Hay un botón de RESET que es muy útil a la hora de hacer pruebas en la interfaz. El mismo elimina los datos de los JSON
-creados
-
 Además deberás servir una API REST que permita hacer lo siguiente:
 
 - Almacenar roommates nuevos ocupando [random user](https://randomuser.me/api).
@@ -28,6 +11,26 @@ Además deberás servir una API REST que permita hacer lo siguiente:
 - Devolver el historial de gastos registrados.
 - Modificar la información correspondiente a un gasto.
 - Eliminar gastos del historial.
+
+## En otras palabras
+
+Lo que debe ocurrir es que al presionar el botón agregar roommates, irán apareciendo usuarios en una línea que tendrá:
+
+![Ejemplo](/debe_recibe.jpg)
+
+![Si se registra un gasto,](/agregar_gasto.jpg) el mismo debe dividirse entre los usuarios que aparecen en la tabla.
+Como el usuario que origino el gasto no puede "deber" entonces en la columna "recibe" se genera un valor a su favor(que es
+la parte que le corresponde del gasto), mientras que en la columna "DEBE" de los demás usuarios se genera la parte
+que deben del gasto.
+
+En la tabla ![SHistorial,](/historial.jpg) se modifican y eliminan los datos del gasto
+
+Cuando se modifica el valor de un gasto, se deben recalcular los "DEBE y RECIBE" de los usuarios afectados por el gasto
+
+Cuando se elimina un gasto, se deben recalcular los "DEBE y RECIBE" de los usuarios afectados por el gasto
+
+Hay un botón de RESET que es muy útil a la hora de hacer pruebas en la interfaz. El mismo elimina los datos de los JSON
+creados
 
 ## Avances hasta el último Commit
 
@@ -83,9 +86,7 @@ este proceso.
    gasto. Se recomienda agregar a la lista de correos su correo personal para verificar
    esta funcionalidad. (Opcional)
 
-```
-Y debe verse asi:
-```
+##### Y debe verse asi:
 
 ![Roommates](/prueba_roommates.jpg)
 
