@@ -82,20 +82,22 @@ http
         // gasto. Se recomienda agregar a la lista de correos su correo personal para verificar
         // esta funcionalidad. (Opcional)
 
-        // let nombre = gastos.map((e) => e.roommate);
-        // let descripcion = gastos.map((e) => e.descripcion);
-        // let monto = gastos.map((e) => e.monto);
-        // let correos = datosRm.map((e) => e.correo);
+        let verRm = JSON.parse(fs.readFileSync("roommates.json", "utf8"));
+        let datosRm = verRm.roommates;
+        let nombre = gastos.map((e) => e.roommate);
+        let descripcion = gastos.map((e) => e.descripcion);
+        let monto = gastos.map((e) => e.monto);
+        let correos = datosRm.map((e) => e.correo);
 
-        // send(nombre, descripcion, monto, correos)
-        //   .then(() => {
-        //     res.end();
-        //   })
-        //   .catch((e) => {
-        //     res.statusCode = 500;
-        //     res.end();
-        //     console.log("Error en el envío de correo", e);
-        //   });
+        send(nombre, descripcion, monto, correos)
+          .then(() => {
+            res.end();
+          })
+          .catch((e) => {
+            res.statusCode = 500;
+            res.end();
+            console.log("Error en el envío de correo", e);
+          });
 
         fs.writeFileSync("gastos.json", JSON.stringify(gastosJSON, null, 1));
         res.end();

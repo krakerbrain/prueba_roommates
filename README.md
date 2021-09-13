@@ -16,14 +16,14 @@ Además deberás servir una API REST que permita hacer lo siguiente:
 
 Lo que debe ocurrir es que al presionar el botón agregar roommates, irán apareciendo usuarios en una línea que tendrá:
 
-![](/debe_recibe.jpg)
+![](/readme_img/debe_recibe.jpg)
 
-Si se registra un gasto,![](/agregar_gasto.jpg) el mismo debe dividirse entre los usuarios que aparecen en la tabla.
+Si se registra un gasto,![](/readme_img/agregar_gasto.jpg) el mismo debe dividirse entre los usuarios que aparecen en la tabla.
 Como el usuario que origino el gasto no puede "deber" entonces en la columna "recibe" se genera un valor a su favor(que es
 la parte que le corresponde del gasto), mientras que en la columna "DEBE" de los demás usuarios se genera la parte
 que deben del gasto.
 
-En la tabla Historial, ![](/historial.jpg) se modifican y eliminan los datos del gasto
+En la tabla Historial, ![](/readme_img/historial.jpg) se modifican y eliminan los datos del gasto
 
 Cuando se modifica el valor de un gasto, se deben recalcular los "DEBE y RECIBE" de los usuarios afectados por el gasto
 
@@ -88,7 +88,7 @@ este proceso.
 
 ##### Y debe verse asi:
 
-![Roommates](/prueba_roommates.jpg)
+![Roommates](/readme_img/prueba_roommates.jpg)
 
 ## Construido con 🛠️
 
