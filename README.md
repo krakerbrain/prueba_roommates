@@ -4,12 +4,13 @@ Crear un servidor con Node que sirva una interfaz HTML que tendrá cuya temátic
 de gastos entre roommates.
 
 Además deberás servir una API REST que permita hacer lo siguiente:
-● Almacenar roommates nuevos ocupando [random user](https://randomuser.me/api).
-● Devolver todos los roommates almacenados.
-● Registrar nuevos gastos.
-● Devolver el historial de gastos registrados.
-● Modificar la información correspondiente a un gasto.
-● Eliminar gastos del historial.
+
+- Almacenar roommates nuevos ocupando [random user](https://randomuser.me/api).
+- Devolver todos los roommates almacenados.
+- Registrar nuevos gastos.
+- Devolver el historial de gastos registrados.
+- Modificar la información correspondiente a un gasto.
+- Eliminar gastos del historial.
 
 ## Avances hasta el último Commit
 
@@ -20,10 +21,10 @@ tampoco se ha hecho el recalculo cuando se elimina un gasto.
 
 _Estas instrucciones te permitirán obtener una copia del proyecto en funcionamiento en tu máquina local para propósitos de desarrollo y pruebas._
 
-$ git clone https://github.com/krakerbrain/prueba_roommates.git
-$ cd ../path/to/the/file
-$ npm install
-$ npm index.js
+- $ git clone https://github.com/krakerbrain/prueba_roommates.git
+- $ cd ../path/to/the/file
+- $ npm install
+- $ npm index.js
 
 ### Instalación 🔧
 
