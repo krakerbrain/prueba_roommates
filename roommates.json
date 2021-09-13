@@ -1,18 +1,1 @@
-{
- "roommates": [
-  {
-   "id": "4898d1",
-   "nombre": "Hilal Bastiaans",
-   "debe": 1500,
-   "recibe": 250,
-   "correo": "hilal.bastiaans@example.com"
-  },
-  {
-   "id": "18cc8e",
-   "nombre": "Thomas Wilson",
-   "debe": 1500,
-   "recibe": 1500,
-   "correo": "thomas.wilson@example.com"
-  }
- ]
-}
+{"roommates":[]}
