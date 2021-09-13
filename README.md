@@ -1,6 +1,6 @@
 # Prueba - Roommates
 
-Crear un servidor con Node que sirva una interfaz HTML que tendrá cuya temática está basada en el registro
+Crear un servidor con Node que sirva una interfaz HTML cuya temática está basada en el registro
 de gastos entre roommates.
 
 Además deberás servir una API REST que permita hacer lo siguiente:
