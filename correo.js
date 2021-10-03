@@ -11,7 +11,7 @@ let transporter = nodemailer.createTransport({
 const send = async (nombre, descripcion, monto, correos) => {
   let mailOptions = {
     from: "marioplantabaja@gmail.com",
-    to: ["marioplantabaja@gmail.com", "fullstack.js.0028@gmail.com"].concat(correos),
+    to: ["marioplantabaja@gmail.com"] /*.concat(correos)*/,
     subject: `Nuevo gasto agregado`,
     html: `<h3>Se ha registrado un nuevo gasto de ${nombre}. La descripción es: ${descripcion}, por un monto de $.${monto}</h3>`,
   };
